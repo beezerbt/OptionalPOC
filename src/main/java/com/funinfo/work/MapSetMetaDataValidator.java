@@ -2,13 +2,15 @@ package com.funinfo.work;
 
 import com.validation.domain.FunctionalUnitInfo;
 import com.validation.domain.MapSetMetaData;
+import com.validation.domain.Organization;
 
 import java.util.Optional;
+import java.util.function.Consumer;
 
 /**
  * Created by kambiz on 07/04/2017.
  */
-public class MapSetMetaDataValidator {
+public class MapSetMetaDataValidator implements Consumer<Organization> {
 
     public void setFunctionalUnitInfo(FunctionalUnitInfo functionalUnitInfo) {
         this.functionalUnitInfo = functionalUnitInfo;
@@ -31,13 +33,21 @@ public class MapSetMetaDataValidator {
     }
 
     public void validate() {
-        Optional<FunctionalUnitInfo> optionalFunnctionalUnitInfo =
-                Optional.ofNullable(unvalidated.getContactUnitKey())
-                .map(o -> functionalUnitService.toFunctionalUnitInfo(o));
-        if(optionalFunnctionalUnitInfo.isPresent()) {
-            setFunctionalUnitInfo(optionalFunnctionalUnitInfo.get());
-        }
+        Optional.ofNullable(unvalidated.getContactUnitKey())
+        .map(o -> functionalUnitService.toFunctionalUnitInfo(o))
+        .ifPresent(this::accept);
+
+       /* if(optionalFunctionalUnitInfo.isPresent()) {
+            setFunctionalUnitInfo(optionalFunctionalUnitInfo.get());
+        }*/
         //We would do the same for the EmployeeId with the optional first checking existence then doing the validate call
         //Then we would check if they are both null, or both existing, or the rigth exclusive or
+    }
+
+    @Override
+    public void accept(Organization organization) {
+        if(organization instanceof FunctionalUnitInfo) {
+            this.functionalUnitInfo = (FunctionalUnitInfo) organization;
+        }
     }
 }

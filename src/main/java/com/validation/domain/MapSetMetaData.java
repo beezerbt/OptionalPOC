@@ -8,11 +8,14 @@ public class MapSetMetaData {
         return contactUnitKey;
     }
 
-    public void setContactUnitKey(String contactUnitKey) {
-        this.contactUnitKey = contactUnitKey;
+    private String contactUnitKey;
+
+    public String getEmployeeId() {
+        return employeeId;
     }
 
-    private String contactUnitKey;
+    private String employeeId;
+
 
 
 }

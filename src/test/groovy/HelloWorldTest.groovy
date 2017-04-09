@@ -24,7 +24,7 @@ class MyFirstSpec extends Specification {
         mockedUnvalidated.getContactUnitKey() >> "CA-CG"
         def mockedFunctionalUnitService = Mock(FunctionalUnitService)
         mockedFunctionalUnitService.toFunctionalUnitInfo("CA-CG") >> expectedFunctionalUnitInfo
-        def ut = new MapSetMetaDataValidator(true, mockedUnvalidated, mockedFunctionalUnitService)
+        MapSetMetaDataValidator ut = new MapSetMetaDataValidator(true, mockedUnvalidated, mockedFunctionalUnitService)
 
         when:
         ut.validate()

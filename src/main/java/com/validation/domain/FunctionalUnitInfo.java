@@ -3,7 +3,7 @@ package com.validation.domain;
 /**
  * Created by kambiz on 07/04/2017.
  */
-public class FunctionalUnitInfo {
+public class FunctionalUnitInfo implements Organization {
 
     public String getContactUnitKey() {
         return contactUnitKey;
