@@ -10,5 +10,12 @@ import java.util.function.Function;
 @FunctionalInterface
 public interface Validation {
 
-    <T> List<Function<String, Optional<T>>> getValidationFunctionsForDomain();
+    <T extends Function> List<Function<Class, Optional<T>>> getValidationFunctionsForDomain();
+
+    /*default <T extends Class, U extends List<Function>> List<Function> findListOfApplicableFunctionsForType(Class validationType) {
+        List<Function<Class, Optional<T>>> allValidationFunctions = getValidationFunctionsForDomain();
+        allValidationFunctions
+                .stream()
+                .filter(classOptionalFunction -> classOptionalFunction.apply(validationType)
+    } */
 }
