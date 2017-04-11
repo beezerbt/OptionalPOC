@@ -1,5 +1,7 @@
 package com.validation;
 
+import com.funinfo.work.Errors;
+import com.sun.org.apache.xpath.internal.operations.Or;
 import com.validation.domain.Contact;
 import com.validation.domain.ContactUnit;
 import com.validation.domain.Organization;
@@ -17,14 +19,28 @@ public class MapSetDomainFunctionFactory implements Validation {
 
     private final Function<String, Optional<Organization>> toContactFromCwid = s-> Optional.ofNullable(s).map(Contact::new);
     private final Function<String, Optional<Organization>> toContactUnitFromKey = s-> Optional.ofNullable(s).map(ContactUnit::new);
+    private final Map<Class, Function<String, Optional<Organization>>> functionInventory;
 
+    public MapSetDomainFunctionFactory() {
+        functionInventory = getValidationFunctionInventory();
+    }
 
-    public Map<Class, Function<String, Optional<Organization>>> getValidationFunctionInventory() {
+    private Map<Class, Function<String, Optional<Organization>>> getValidationFunctionInventory() {
         Map<Class, Function<String, Optional<Organization>>> validationFunctions = new TreeMap<>();
         validationFunctions.put(Contact.class, toContactFromCwid);
         validationFunctions.put(ContactUnit.class, toContactUnitFromKey);
 
         return validationFunctions;
+    }
+
+    public Map<Class, Validation<Errors, Organization>> applyTheFunctionToTheType(Organization input) {
+        if(input instanceof Contact) {
+
+        } else if (input instanceof ContactUnit) {
+
+        } else {
+
+        }
     }
 
     @Override
