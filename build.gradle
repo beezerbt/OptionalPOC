@@ -16,6 +16,11 @@ dependencies {
     //testCompile group: 'junit', name: 'junit', version: '4.11'
     // mandatory dependencies for using Spock
     compile "org.codehaus.groovy:groovy-all:2.4.1"
+    compile "dorg.functionaljava:functionaljava:4.7"
+    compile "org.functionaljava:functionaljava-java8:4.7"
+    compile "org.functionaljava:functionaljava-quickcheck:4.7"
+    compile "org.functionaljava:functionaljava-java-core:4.7"
+    compile 'com.google.guava:guava:21.0'
     testCompile "org.spockframework:spock-core:1.1-groovy-2.4-rc-3"
 
     // optional dependencies for using Spock

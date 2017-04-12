@@ -10,7 +10,7 @@ import java.util.function.Function;
 public class Validator implements Validation {
 
     @Override
-    public <T> List<Function<String, Optional<T>>> getValidationFunctionsForDomain() {
+    public <T extends Function> List<Function<Class, Optional<T>>> getValidationFunctionsForDomain() {
         return null;
     }
 
