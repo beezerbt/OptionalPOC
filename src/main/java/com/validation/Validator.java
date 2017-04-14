@@ -7,7 +7,7 @@ import java.util.function.Function;
 /**
  * Created by kambiz on 06/04/2017.
  */
-public class Validator implements Validation {
+public class Validator implements OrganizationValidation {
 
     @Override
     public <T extends Function> List<Function<Class, Optional<T>>> getValidationFunctionsForDomain() {

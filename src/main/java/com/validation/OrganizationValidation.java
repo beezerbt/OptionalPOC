@@ -8,7 +8,7 @@ import java.util.function.Function;
  * Created by kambiz on 06/04/2017.
  */
 @FunctionalInterface
-public interface Validation {
+public interface OrganizationValidation {
 
     <T extends Function> List<Function<Class, Optional<T>>> getValidationFunctionsForDomain();
 

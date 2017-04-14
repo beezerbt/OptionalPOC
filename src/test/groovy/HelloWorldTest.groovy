@@ -5,7 +5,7 @@
 
 import com.funinfo.work.FunctionalUnitService
 import com.funinfo.work.MapSetMetaDataValidator
-import com.validation.domain.FunctionalUnitInfo
+import com.validation.*
 import com.validation.domain.MapSetMetaData
 import spock.lang.*
 
