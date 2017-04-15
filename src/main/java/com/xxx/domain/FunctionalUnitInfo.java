@@ -1,4 +1,4 @@
-package com.validation.domain;
+package com.xxx.domain;
 
 /**
  * Created by kambiz on 07/04/2017.

@@ -1,6 +1,6 @@
-package com.funinfo.work;
+package com.xxx.component;
 
-import com.validation.domain.Organization;
+import com.xxx.domain.Organization;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,6 +1,6 @@
-package com.funinfo.work;
+package com.xxx.service;
 
-import com.validation.domain.FunctionalUnitInfo;
+import com.xxx.domain.FunctionalUnitInfo;
 
 /**
  * Created by kambiz on 07/04/2017.

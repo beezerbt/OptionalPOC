@@ -3,11 +3,11 @@
  */
 
 
-import com.funinfo.work.FunctionalUnitService
-import com.funinfo.work.MapSetMetaDataValidator
-import com.validation.*
-import com.validation.domain.MapSetMetaData
-import spock.lang.*
+import com.xxx.component.MapSetMetaDataValidator
+import com.xxx.domain.FunctionalUnitInfo
+import com.xxx.domain.MapSetMetaData
+import com.xxx.service.FunctionalUnitService
+import spock.lang.Specification
 
 // Hit 'Run Script' below
 class MyFirstSpec extends Specification {
@@ -15,7 +15,7 @@ class MyFirstSpec extends Specification {
         expect:
         Math.max(1, 2) == 2
     }
-
+    //TODO::must be refactored
     def "Valid contanctUnitKey results in valid functionalUnitInfo"() {
         given:
         String expectedContactUnitName = "Crop Anal and Crop Geno"

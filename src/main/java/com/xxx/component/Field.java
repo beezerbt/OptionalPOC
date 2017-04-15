@@ -1,4 +1,4 @@
-package com.funinfo.work;
+package com.xxx.component;
 
 /**
  * Created by kambiz on 07/04/2017.

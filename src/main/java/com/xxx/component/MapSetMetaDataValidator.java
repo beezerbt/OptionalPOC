@@ -1,10 +1,10 @@
-package com.funinfo.work;
+package com.xxx.component;
 
-import com.validation.domain.FunctionalUnitInfo;
-import com.validation.domain.MapSetMetaData;
-import com.validation.domain.Organization;
+import com.xxx.domain.FunctionalUnitInfo;
+import com.xxx.domain.MapSetMetaData;
+import com.xxx.domain.Organization;
+import com.xxx.service.FunctionalUnitService;
 
-import java.util.Optional;
 import java.util.function.Consumer;
 
 /**
@@ -33,9 +33,10 @@ public class MapSetMetaDataValidator implements Consumer<Organization> {
     }
 
     public void validate() {
-        Optional.ofNullable(unvalidated.getContactUnitKey())
+        //TODO::cleanup
+       /* Optional.ofNullable(unvalidated.getContactUnitKey())
         .map(o -> functionalUnitService.toFunctionalUnitInfo(o))
-        .ifPresent(this::accept);
+        .ifPresent(this::accept);*/
 
        /* if(optionalFunctionalUnitInfo.isPresent()) {
             setFunctionalUnitInfo(optionalFunctionalUnitInfo.get());
