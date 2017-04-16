@@ -10,6 +10,8 @@ import java.util.Optional;
 import java.util.function.Function;
 
 /**
+ * This serves up the functions used for the domain
+ * to validate itself.
  * Created by kambiz on 06/04/2017.
  */
 public class MapSetDomainFunctionFactory {
