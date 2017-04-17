@@ -7,7 +7,6 @@ public class ContactUnit implements Organization {
     public ContactUnit(String contactUnitKey) {
         this.contactUnitKey = contactUnitKey;
     }
-
     private final String contactUnitKey;
 
 }

@@ -1,11 +1,5 @@
 package com.xxx.domain;
 
-import com.google.common.collect.Multimap;
-import com.xxx.component.MapSetDomainFunctionFactory;
-
-import java.util.Optional;
-import java.util.function.Function;
-
 /**
  * Created by kambiz on 07/04/2017.
  */
@@ -14,15 +8,13 @@ public class MapSetMetaData {
     private ContactUnit contactUnit;
     private MapSetName mapSetName;
     private Remarks remarks;
-    private Multimap<Class, Function<String, Optional<Organization>>> validationFunctions;
 
     public MapSetMetaData(Contact contact, ContactUnit contactUnit, MapSetName mapSetName,
-                          Remarks remarks, MapSetDomainFunctionFactory mapSetDomainFunctionFactory) {
+                          Remarks remarks) {
         this.contact = contact;
         this.contactUnit = contactUnit;
         this.mapSetName = mapSetName;
         this.remarks = remarks;
-        this.validationFunctions = mapSetDomainFunctionFactory.getValidationFunctionInventory();
     }
 
     public Contact getContact() {

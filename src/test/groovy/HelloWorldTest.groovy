@@ -3,12 +3,17 @@
  */
 
 
+
+import com.xxx.component.MapSetDomainFunctionFactory
 import com.xxx.component.MapSetMetaDataValidator
+import com.xxx.component.validation.OrganizationValidator
+import com.xxx.domain.Contact
+import com.xxx.domain.ContactUnit
 import com.xxx.domain.FunctionalUnitInfo
 import com.xxx.domain.MapSetMetaData
+import com.xxx.domain.Organization
 import com.xxx.service.FunctionalUnitService
 import spock.lang.Specification
-
 // Hit 'Run Script' below
 class MyFirstSpec extends Specification {
     def "let's try this!"() {
@@ -67,5 +72,41 @@ class MyFirstSpec extends Specification {
 
         then:
         ut.getFunctionalUnitInfo() == null
+    }
+
+    def "Commanding to be served the existent toContactFromCwid function succeeds"() {
+        given:
+        def MapSetDomainFunctionFactory ut
+
+        when:
+        def toContactFromCwidFunction = MapSetDomainFunctionFactory.commandToFunctions.apply("toContactFromCwid")
+
+        then:
+        toContactFromCwidFunction != null
+        Optional<Organization> contactInstance = toContactFromCwidFunction.apply("S")
+        contactInstance.isPresent()
+    }
+
+    def "Null Contact produces a validation error"() {
+        given:
+        OrganizationValidator ut = new OrganizationValidator()
+        when:
+        Contact itemForValidation = null
+        ut.validate(itemForValidation, "Contact")
+        then:
+        ut.getResults().size()==2
+        println(ut.getResults().toListString())
+    }
+
+    def "Null Contact and null ContactUnit produces a mutually exclusive but mandatory validation error"() {
+        given:
+        OrganizationValidator ut = new OrganizationValidator()
+        when:
+        Contact itemForValidation = null
+        ContactUnit secondForValidation = null
+        ut.validate(itemForValidation, "Contact", secondForValidation, "ContactUnit")
+        then:
+        ut.getResults().size()==1
+        println(ut.getResults().toListString())
     }
 }
