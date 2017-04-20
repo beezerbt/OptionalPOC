@@ -13,6 +13,9 @@ import com.xxx.domain.FunctionalUnitInfo
 import com.xxx.domain.MapSetMetaData
 import com.xxx.domain.Organization
 import com.xxx.service.FunctionalUnitService
+import com.xxx.util.ValueMapConverter
+import org.springframework.util.LinkedMultiValueMap
+import org.springframework.util.MultiValueMap
 import spock.lang.Specification
 // Hit 'Run Script' below
 class MyFirstSpec extends Specification {
@@ -108,5 +111,68 @@ class MyFirstSpec extends Specification {
         then:
         ut.getResults().size()==1
         println(ut.getResults().toListString())
+    }
+
+    def "Null Contact and not null ContactUnit passes validation"() {
+        given:
+        OrganizationValidator ut = new OrganizationValidator()
+        when:
+        Contact itemForValidation = null
+        ContactUnit secondForValidation = new ContactUnit()
+        ut.validate(itemForValidation, "Contact", secondForValidation, "ContactUnit")
+        then:
+        ut.getResults().size()==1
+        println(ut.getResults().toListString())
+    }
+
+    def "Testing thisToThat with mixture of array input and single input succeeds"() {
+
+        given:
+        MultiValueMap<String, String> mvm = new LinkedMultiValueMap<>();
+        Map<String, Object> input = new HashMap<>();
+        List<String> inputValues = new ArrayList<>();
+        String singleValue = "second"
+
+        inputValues.add("1");
+        inputValues.add("2");
+        inputValues.add("3");
+        inputValues.add("4");
+        inputValues.add("5");
+        inputValues.add("6");
+
+        input.put("1", inputValues);
+        input.put("2", singleValue);
+        when:
+        ValueMapConverter ut = new ValueMapConverter();
+        ut.convertThisToThat(input, mvm);
+
+        then:
+        mvm.values().contains(inputValues)
+        List<String> mirrorSingleValueInCollection = new ArrayList<>();
+        mirrorSingleValueInCollection.add(singleValue)
+        mvm.values().contains(mirrorSingleValueInCollection)
+        mvm.size() == 2
+        print(mvm.toString())
+    }
+
+    def "Testing thisToThat with null value"() {
+
+        given:
+        MultiValueMap<String, String> mvm = new LinkedMultiValueMap<>();
+        Map<String, Object> input = new HashMap<>();
+        List<String> inputValues = new ArrayList<>();
+        String singleValue = null
+        input.put("2", singleValue);
+        when:
+        ValueMapConverter ut = new ValueMapConverter();
+        ut.convertThisToThat(input, mvm);
+
+        then:
+        mvm.values().contains(inputValues)
+        List<String> mirrorSingleValueInCollection = new ArrayList<>();
+        mirrorSingleValueInCollection.add(singleValue)
+        mvm.values().contains(mirrorSingleValueInCollection)
+        mvm.size() == 2
+        print(mvm.toString())
     }
 }

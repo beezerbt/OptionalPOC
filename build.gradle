@@ -21,6 +21,7 @@ dependencies {
     compile "org.functionaljava:functionaljava-quickcheck:4.7"
     compile "org.functionaljava:functionaljava-java-core:4.7"
     compile 'com.google.guava:guava:21.0'
+    compile 'org.springframework:spring-context:4.3.8.RELEASE'
     testCompile "org.spockframework:spock-core:1.1-groovy-2.4-rc-3"
 
     // optional dependencies for using Spock
